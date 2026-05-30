@@ -1,1 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Sankar V | AI & Data Science</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+:root{
+  --bg:#f9f7f4;--white:#ffffff;--ink:#1c1c1e;--ink2:#3a3a3c;--muted:#6e6e73;--light:#aeaeb2;--border:#e5e0d8;
+  --mint:#e8f5ee;--mint-b:#b8dfc8;--mint-t:#2d6a4f;
+  --lav:#ede9f8;--lav-b:#c4b5f0;--lav-t:#4c3a9e;
+  --peach:#fdf0e8;--peach-b:#f5c9a8;--peach-t:#8b4513;
+  --sky:#e8f2fc;--sky-b:#a8ccf0;--sky-t:#1a4f8a;
+  --yellow:#fdf8e1;--yellow-b:#e8d060;--yellow-t:#7a5f00;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
+}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.7;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1rem 3rem;background:rgba(249,247,244,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);}
+.logo{font-family:var(--serif);font-size:1.3rem;font-weight:700;color:var(--ink);text-decoration:none;}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:0.82rem;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;transition:color 0.2s;}
+.nav-links a:hover{color:var(--ink);}
+.ham{display:none;flex-direction:column;gap:5px;cursor:pointer;border:none;background:none;}
+.ham span{width:20px;height:1.5px;background:var(--ink);display:block;}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;padding:8rem 3rem 5rem;max-width:1080px;margin:0 auto;}
+.hero-layout{display:grid;grid-template-columns:280px 1fr;gap:5rem;align-items:center;width:100%;}
+.hero-img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:top center;border-radius:16px;border:1px solid var(--border);box-shadow:0 8px 32px rgba(0,0,0,0.08);display:block;}
+.hero-img-caption{margin-top:12px;text-align:center;font-size:0.75rem;color:var(--light);letter-spacing:0.05em;text-transform:uppercase;}
+.hero-greeting{font-size:0.78rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:0.8rem;}
+.hero-name{font-family:var(--serif);font-size:clamp(2.8rem,5vw,4.2rem);font-weight:700;line-height:1.05;letter-spacing:-0.01em;color:var(--ink);margin-bottom:1.2rem;}
+.hero-role{font-size:0.95rem;font-weight:400;color:var(--muted);margin-bottom:1.8rem;line-height:1.6;}
+.hero-role strong{color:var(--ink);font-weight:600;}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:2.5rem;}
+.tag{padding:5px 14px;border-radius:100px;font-size:0.75rem;font-weight:500;border:1px solid;}
+.tag.green{background:var(--mint);border-color:var(--mint-b);color:var(--mint-t);}
+.tag.purple{background:var(--lav);border-color:var(--lav-b);color:var(--lav-t);}
+.tag.orange{background:var(--peach);border-color:var(--peach-b);color:var(--peach-t);}
+.tag.blue{background:var(--sky);border-color:var(--sky-b);color:var(--sky-t);}
+.tag.yellow{background:var(--yellow);border-color:var(--yellow-b);color:var(--yellow-t);}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;}
+.btn-primary{background:var(--ink);color:var(--bg);padding:11px 26px;border-radius:8px;text-decoration:none;font-size:0.84rem;font-weight:500;transition:opacity 0.2s;}
+.btn-primary:hover{opacity:0.8;}
+.btn-ghost{background:transparent;color:var(--ink);border:1px solid var(--border);padding:11px 26px;border-radius:8px;text-decoration:none;font-size:0.84rem;font-weight:500;transition:border-color 0.2s;}
+.btn-ghost:hover{border-color:var(--ink);}
+.hero-stats{display:flex;gap:2.5rem;margin-top:3rem;padding-top:2rem;border-top:1px solid var(--border);}
+.stat-num{font-family:var(--serif);font-size:1.8rem;font-weight:700;color:var(--ink);line-height:1;}
+.stat-lbl{font-size:0.72rem;color:var(--muted);margin-top:3px;font-weight:500;}
+
+/* SECTIONS */
+section{padding:5rem 3rem;}
+.sec-wrap{max-width:1080px;margin:0 auto;}
+.sec-label{font-size:0.72rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:0.6rem;}
+.sec-title{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.4rem);font-weight:700;letter-spacing:-0.01em;color:var(--ink);margin-bottom:2.5rem;line-height:1.1;}
+.divider{border:none;border-top:1px solid var(--border);margin-bottom:3rem;}
+
+/* ABOUT */
+#about{background:var(--white);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;}
+.about-text p{color:var(--muted);margin-bottom:1rem;font-size:0.92rem;}
+.about-text p strong{color:var(--ink);font-weight:600;}
+.about-meta{margin-top:2rem;display:flex;flex-direction:column;gap:10px;}
+.meta-row{display:flex;gap:12px;font-size:0.84rem;}
+.meta-key{color:var(--light);min-width:80px;font-weight:500;}
+.meta-val{color:var(--ink2);}
+.skill-group{margin-bottom:1.5rem;}
+.sg-head{font-size:0.7rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--light);margin-bottom:8px;}
+.sg-tags{display:flex;flex-wrap:wrap;gap:7px;}
+.sk{padding:5px 13px;border-radius:6px;font-size:0.78rem;font-weight:500;border:1px solid;}
+.sk.g{background:var(--mint);border-color:var(--mint-b);color:var(--mint-t);}
+.sk.p{background:var(--lav);border-color:var(--lav-b);color:var(--lav-t);}
+.sk.o{background:var(--peach);border-color:var(--peach-b);color:var(--peach-t);}
+.sk.b{background:var(--sky);border-color:var(--sky-b);color:var(--sky-t);}
+
+/* PATENTS */
+#patents{background:var(--bg);}
+.patents-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
+.patent-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:1.8rem;transition:box-shadow 0.2s;}
+.patent-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.07);}
+.patent-appno{font-size:0.72rem;color:var(--light);margin-bottom:0.5rem;letter-spacing:0.04em;}
+.patent-title{font-family:var(--serif);font-size:1rem;font-weight:600;color:var(--ink);line-height:1.4;margin-bottom:1rem;}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border-radius:100px;font-size:0.72rem;font-weight:600;border:1px solid;}
+.badge.pub{background:var(--mint);border-color:var(--mint-b);color:var(--mint-t);}
+.badge.filed{background:var(--yellow);border-color:var(--yellow-b);color:var(--yellow-t);}
+.patent-date{font-size:0.75rem;color:var(--light);margin-top:0.8rem;}
+
+/* PROJECTS */
+#projects{background:var(--white);}
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;}
+.proj-card{border-radius:12px;padding:1.8rem;border:1px solid transparent;transition:transform 0.2s,box-shadow 0.2s;display:flex;flex-direction:column;}
+.proj-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,0.07);}
+.proj-card.c1{background:var(--mint);border-color:var(--mint-b);}
+.proj-card.c2{background:var(--lav);border-color:var(--lav-b);}
+.proj-card.c3{background:var(--peach);border-color:var(--peach-b);}
+.proj-icon{font-size:1.6rem;margin-bottom:1rem;}
+.proj-name{font-family:var(--serif);font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:0.5rem;line-height:1.3;}
+.proj-desc{font-size:0.82rem;color:var(--ink2);margin-bottom:1rem;flex:1;line-height:1.6;}
+.proj-techs{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:1rem;}
+.ptag{font-size:0.7rem;padding:2px 9px;border-radius:4px;background:rgba(255,255,255,0.7);border:1px solid rgba(0,0,0,0.08);color:var(--ink2);font-weight:500;}
+.proj-link{font-size:0.8rem;font-weight:600;color:var(--ink);text-decoration:none;display:inline-flex;align-items:center;gap:4px;padding:7px 16px;border-radius:6px;background:rgba(255,255,255,0.75);border:1px solid rgba(0,0,0,0.1);width:fit-content;transition:background 0.2s;}
+.proj-link:hover{background:var(--white);}
+
+/* CERTIFICATIONS */
+#certifications{background:var(--bg);}
+.certs-list{display:flex;flex-direction:column;gap:10px;}
+.cert-item{display:flex;align-items:center;gap:1rem;background:var(--white);border:1px solid var(--border);border-radius:10px;padding:1rem 1.4rem;transition:border-color 0.2s;}
+.cert-item:hover{border-color:var(--mint-b);}
+.cert-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.d1{background:var(--mint-b);}.d2{background:var(--lav-b);}.d3{background:var(--sky-b);}.d4{background:var(--peach-b);}.d5{background:var(--yellow-b);}
+.cert-name{font-size:0.9rem;font-weight:500;color:var(--ink);}
+.cert-by{font-size:0.75rem;color:var(--light);}
+.cert-badge{margin-left:auto;flex-shrink:0;padding:3px 10px;border-radius:100px;font-size:0.7rem;font-weight:600;border:1px solid;}
+.cb1{background:var(--mint);border-color:var(--mint-b);color:var(--mint-t);}
+.cb2{background:var(--lav);border-color:var(--lav-b);color:var(--lav-t);}
+.cb3{background:var(--sky);border-color:var(--sky-b);color:var(--sky-t);}
+.cb4{background:var(--peach);border-color:var(--peach-b);color:var(--peach-t);}
+.cb5{background:var(--yellow);border-color:var(--yellow-b);color:var(--yellow-t);}
+
+/* ACHIEVEMENTS */
+#achievements{background:var(--white);}
+.ach-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+.ach-card{border-radius:12px;padding:1.5rem;border:1px solid transparent;transition:transform 0.2s;text-align:center;}
+.ach-card:hover{transform:translateY(-3px);}
+.ach-card.a1{background:var(--yellow);border-color:var(--yellow-b);}
+.ach-card.a2{background:var(--mint);border-color:var(--mint-b);}
+.ach-card.a3{background:var(--lav);border-color:var(--lav-b);}
+.ach-card.a4{background:var(--peach);border-color:var(--peach-b);}
+.ach-icon{font-size:1.6rem;margin-bottom:0.7rem;}
+.ach-title{font-family:var(--serif);font-size:0.95rem;font-weight:700;color:var(--ink);margin-bottom:0.3rem;}
+.ach-desc{font-size:0.76rem;color:var(--ink2);line-height:1.5;}
+
+/* CONTACT */
+#contact{background:var(--bg);}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
+.contact-left p{font-size:0.92rem;color:var(--muted);margin-bottom:2rem;line-height:1.7;}
+.contact-email{font-family:var(--serif);font-size:1.2rem;font-weight:600;color:var(--ink);margin-bottom:2rem;display:block;text-decoration:none;}
+.contact-email:hover{text-decoration:underline;}
+.contact-links{display:flex;flex-direction:column;gap:10px;}
+.clink{display:flex;align-items:center;gap:10px;padding:12px 18px;border-radius:10px;text-decoration:none;font-size:0.85rem;font-weight:500;border:1px solid;transition:opacity 0.2s;}
+.clink:hover{opacity:0.85;}
+.clink.li{background:var(--sky);border-color:var(--sky-b);color:var(--sky-t);}
+.clink.gh{background:var(--bg);border-color:var(--border);color:var(--ink);}
+.clink.em{background:var(--lav);border-color:var(--lav-b);color:var(--lav-t);}
+.contact-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:2rem;}
+.cstat{padding:1.2rem 0;border-bottom:1px solid var(--border);}
+.cstat:last-child{border-bottom:none;padding-bottom:0;}
+.cstat:first-child{padding-top:0;}
+.cstat-num{font-family:var(--serif);font-size:2.2rem;font-weight:700;color:var(--ink);line-height:1;}
+.cstat-lbl{font-size:0.75rem;color:var(--muted);margin-top:3px;}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:1.5rem 3rem;text-align:center;font-size:0.75rem;color:var(--light);}
+footer a{color:inherit;text-decoration:none;}
+
+/* FADE IN */
+.fi{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.fi.show{opacity:1;transform:translateY(0);}
+.fd1{transition-delay:0.1s;}.fd2{transition-delay:0.18s;}.fd3{transition-delay:0.26s;}
+
+/* MOBILE MENU */
+.mob-nav{display:none;position:fixed;inset:0;background:var(--bg);z-index:200;flex-direction:column;align-items:center;justify-content:center;gap:2rem;}
+.mob-nav.open{display:flex;}
+.mob-nav a{font-family:var(--serif);font-size:2rem;font-weight:700;color:var(--ink);text-decoration:none;}
+.mob-close{position:absolute;top:1.5rem;right:2rem;background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--ink);}
+
+/* RESPONSIVE */
+@media(max-width:860px){
+  nav{padding:1rem 1.5rem;}
+  .nav-links{display:none;}
+  .ham{display:flex;}
+  .hero-layout{grid-template-columns:1fr;gap:2.5rem;}
+  .hero-photo-col{max-width:200px;margin:0 auto;}
+  #hero{padding:7rem 1.5rem 4rem;min-height:auto;}
+  .about-grid,.patents-grid,.contact-grid{grid-template-columns:1fr;}
+  .projects-grid{grid-template-columns:1fr;}
+  .ach-grid{grid-template-columns:1fr 1fr;}
+  section{padding:4rem 1.5rem;}
+  .hero-stats{gap:1.5rem;flex-wrap:wrap;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="logo" href="#">Sankar V.</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#patents">Patents</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="ham" onclick="document.getElementById('mob').classList.add('open')" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mob-nav" id="mob">
+  <button class="mob-close" onclick="document.getElementById('mob').classList.remove('open')">✕</button>
+  <a href="#about"          onclick="document.getElementById('mob').classList.remove('open')">About</a>
+  <a href="#patents"        onclick="document.getElementById('mob').classList.remove('open')">Patents</a>
+  <a href="#projects"       onclick="document.getElementById('mob').classList.remove('open')">Projects</a>
+  <a href="#certifications" onclick="document.getElementById('mob').classList.remove('open')">Certifications</a>
+  <a href="#contact"        onclick="document.getElementById('mob').classList.remove('open')">Contact</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-layout">
+    <div class="hero-photo-col fi">
+      <img src="photo.jpg" alt="Sankar V" class="hero-img"/>
+      <p class="hero-img-caption">Salem, Tamil Nadu · India</p>
+    </div>
+    <div class="hero-text">
+      <p class="hero-greeting fi">Hello, I'm</p>
+      <h1 class="hero-name fi fd1">Sankar V</h1>
+      <p class="hero-role fi fd1">
+        B.Tech student in <strong>Artificial Intelligence &amp; Data Science</strong> at Sona College of Technology, Anna University.
+        Building ML models, IoT systems, and full-stack applications.
+      </p>
+      <div class="hero-tags fi fd2">
+        <span class="tag green">Machine Learning</span>
+        <span class="tag purple">Data Science</span>
+        <span class="tag blue">IoT</span>
+        <span class="tag orange">React</span>
+        <span class="tag yellow">Python</span>
+      </div>
+      <div class="hero-actions fi fd2">
+        <a href="#contact" class="btn-primary">Get in touch</a>
+        <a href="#projects" class="btn-ghost">View projects</a>
+      </div>
+      <div class="hero-stats fi fd3">
+        <div><div class="stat-num">9.51</div><div class="stat-lbl">CGPA · 5th Sem</div></div>
+        <div><div class="stat-num">2</div><div class="stat-lbl">Patents Filed</div></div>
+        <div><div class="stat-num">3+</div><div class="stat-lbl">ML Projects</div></div>
+        <div><div class="stat-num">5+</div><div class="stat-lbl">Certifications</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="sec-wrap">
+    <p class="sec-label fi">Who I am</p>
+    <h2 class="sec-title fi">About Me</h2>
+    <hr class="divider"/>
+    <div class="about-grid">
+      <div class="about-text fi">
+        <p>I'm a <strong>Final year B.Tech student</strong> specialising in Artificial Intelligence &amp; Data Science at Sona College of Technology — with a CGPA of <strong>9.51 out of 10.</strong></p>
+        <p>I work across the full stack — from training <strong>Scikit-learn ML pipelines</strong> and wiring IoT sensors, to building React frontends backed by Firebase. Before finishing my degree I've competed in the <strong>Smart India Hackathon</strong> and filed <strong>two patents.</strong></p>
+        <p>Currently seeking a <strong>Machine Learning Engineer</strong> or <strong>Data Analyst</strong> role where I can turn data into meaningful decisions.</p>
+        <div class="about-meta">
+          <div class="meta-row"><span class="meta-key">Location</span><span class="meta-val">Salem, Tamil Nadu, India</span></div>
+          <div class="meta-row"><span class="meta-key">Degree</span><span class="meta-val">B.Tech AI &amp; DS, 2027</span></div>
+          <div class="meta-row"><span class="meta-key">Languages</span><span class="meta-val">English · Tamil · Japanese (basics)</span></div>
+          <div class="meta-row"><span class="meta-key">Email</span><span class="meta-val">sankarvadivel07@gmail.com</span></div>
+        </div>
+      </div>
+      <div class="fi fd1">
+        <div class="skill-group">
+          <div class="sg-head">ML &amp; Data</div>
+          <div class="sg-tags">
+            <span class="sk g">Python</span><span class="sk g">Scikit-learn</span><span class="sk g">NumPy</span><span class="sk g">Pandas</span><span class="sk g">Matplotlib</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="sg-head">Web &amp; App</div>
+          <div class="sg-tags">
+            <span class="sk p">React</span><span class="sk p">Flask</span><span class="sk p">HTML/CSS</span><span class="sk p">Firebase</span><span class="sk p">MySQL</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="sg-head">Programming</div>
+          <div class="sg-tags">
+            <span class="sk o">Python</span><span class="sk o">Java</span><span class="sk o">C</span><span class="sk o">C++</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="sg-head">Cloud &amp; Tools</div>
+          <div class="sg-tags">
+            <span class="sk b">AWS</span><span class="sk b">IoT</span><span class="sk b">Jupyter</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PATENTS -->
+<section id="patents">
+  <div class="sec-wrap">
+    <p class="sec-label fi">Intellectual Property</p>
+    <h2 class="sec-title fi">Patents</h2>
+    <hr class="divider"/>
+    <div class="patents-grid">
+      <div class="patent-card fi">
+        <div class="patent-appno">Application No: 202541062283</div>
+        <div class="patent-title">SMART IoT and AI-Based Drinking Water Manager and Dispenser</div>
+        <span class="badge pub">✓ Published</span>
+        <div class="patent-date">June 2025</div>
+      </div>
+      <div class="patent-card fi fd1">
+        <div class="patent-appno">Patent Filed</div>
+        <div class="patent-title">Smart IoT-Based Intelligent Safety and Monitoring Helmet for Two-Wheeler Riders</div>
+        <span class="badge filed">⟳ Under Review</span>
+        <div class="patent-date">November 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="sec-wrap">
+    <p class="sec-label fi">What I've built</p>
+    <h2 class="sec-title fi">Projects</h2>
+    <hr class="divider"/>
+    <div class="projects-grid">
+      <div class="proj-card c1 fi">
+        <div class="proj-icon">🌾</div>
+        <div class="proj-name">Smart Crop Advisory System</div>
+        <div class="proj-desc">IoT + ML system providing real-time crop selection and irrigation recommendations using live soil and weather sensor data. Built for Smart India Hackathon.</div>
+        <div class="proj-techs"><span class="ptag">Python</span><span class="ptag">Flask</span><span class="ptag">IoT</span><span class="ptag">Machine Learning</span></div>
+        <a href="https://github.com/sankar-vadivel/smart-india-hackothaon" target="_blank" class="proj-link">View on GitHub →</a>
+      </div>
+      <div class="proj-card c2 fi fd1">
+        <div class="proj-icon">🏃</div>
+        <div class="proj-name">Human Activity Recognition</div>
+        <div class="proj-desc">ML classifier that identifies human activities — walking, sitting, standing — from smartphone sensor data using Scikit-learn pipelines and feature engineering.</div>
+        <div class="proj-techs"><span class="ptag">Python</span><span class="ptag">Scikit-learn</span><span class="ptag">Pandas</span><span class="ptag">Jupyter</span></div>
+        <a href="https://github.com/sankar-vadivel" target="_blank" class="proj-link">View on GitHub →</a>
+      </div>
+      <div class="proj-card c3 fi fd2">
+        <div class="proj-icon">🔬</div>
+        <div class="proj-name">AGRI-LINK AGENT</div>
+        <div class="proj-desc">AI + UV sensor mobile platform for agricultural product quality verification with end-to-end product traceability and authenticity checking.</div>
+        <div class="proj-techs"><span class="ptag">React</span><span class="ptag">Firebase</span><span class="ptag">MySQL</span><span class="ptag">AI Integration</span></div>
+        <a href="https://github.com/sankar-vadivel" target="_blank" class="proj-link">View on GitHub →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications">
+  <div class="sec-wrap">
+    <p class="sec-label fi">Verified Skills</p>
+    <h2 class="sec-title fi">Certifications</h2>
+    <hr class="divider"/>
+    <div class="certs-list">
+      <div class="cert-item fi">
+        <div class="cert-dot d1"></div>
+        <div><div class="cert-name">Machine Learning &amp; Supervised Learning</div><div class="cert-by">Regression, Classification — model training &amp; predictive analytics</div></div>
+        <span class="cert-badge cb1">ML</span>
+      </div>
+      <div class="cert-item fi fd1">
+        <div class="cert-dot d2"></div>
+        <div><div class="cert-name">Generative AI &amp; Prompt Engineering</div><div class="cert-by">IBM — LLM fundamentals &amp; prompt design</div></div>
+        <span class="cert-badge cb2">GenAI</span>
+      </div>
+      <div class="cert-item fi fd1">
+        <div class="cert-dot d3"></div>
+        <div><div class="cert-name">AWS Cloud Practitioner Essentials</div><div class="cert-by">AWS — core services, security &amp; architecture</div></div>
+        <span class="cert-badge cb3">Cloud</span>
+      </div>
+      <div class="cert-item fi fd2">
+        <div class="cert-dot d4"></div>
+        <div><div class="cert-name">Data Processing &amp; Visualization</div><div class="cert-by">Accenture — data cleaning, transformation &amp; visualization</div></div>
+        <span class="cert-badge cb4">Data</span>
+      </div>
+      <div class="cert-item fi fd2">
+        <div class="cert-dot d5"></div>
+        <div><div class="cert-name">Digital 101</div><div class="cert-by">NASSCOM — digital technologies &amp; emerging trends</div></div>
+        <span class="cert-badge cb5">Digital</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="sec-wrap">
+    <p class="sec-label fi">Recognition</p>
+    <h2 class="sec-title fi">Achievements</h2>
+    <hr class="divider"/>
+    <div class="ach-grid">
+      <div class="ach-card a1 fi"><div class="ach-icon">🏆</div><div class="ach-title">Academic Excellence</div><div class="ach-desc">Awarded for outstanding academic performance at Sona College of Technology</div></div>
+      <div class="ach-card a2 fi fd1"><div class="ach-icon">🧮</div><div class="ach-title">Ramanujan Maths Comp.</div><div class="ach-desc">Participated at Level 3 of the Srinivasa Ramanujan Mathematical Competition</div></div>
+      <div class="ach-card a3 fi fd2"><div class="ach-icon">🇮🇳</div><div class="ach-title">Smart India Hackathon</div><div class="ach-desc">Competed nationally with an IoT + ML solution for agricultural challenges</div></div>
+      <div class="ach-card a4 fi fd3"><div class="ach-icon">📜</div><div class="ach-title">2 Patents by 3rd Year</div><div class="ach-desc">Filed and published IoT-AI patents before completing undergraduate studies</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="sec-wrap">
+    <p class="sec-label fi">Let's connect</p>
+    <h2 class="sec-title fi">Get in Touch</h2>
+    <hr class="divider"/>
+    <div class="contact-grid">
+      <div class="fi">
+        <p>I'm actively looking for Machine Learning Engineer and Data Analyst opportunities. Whether you have a role, a project, or just want to say hello — I'd love to hear from you.</p>
+        <a href="mailto:sankarvadivel07@gmail.com" class="contact-email">sankarvadivel07@gmail.com</a>
+        <div class="contact-links">
+          <a href="https://linkedin.com/in/sankar-vadivel" target="_blank" class="clink li">💼 &nbsp; LinkedIn — sankar-vadivel</a>
+          <a href="https://github.com/sankar-vadivel"      target="_blank" class="clink gh">🐙 &nbsp; GitHub — sankar-vadivel</a>
+          <a href="mailto:sankarvadivel07@gmail.com"                       class="clink em">📧 &nbsp; Email me directly</a>
+        </div>
+      </div>
+      <div class="fi fd1">
+        <div class="contact-card">
+          <div class="cstat"><div class="cstat-num">9.51</div><div class="cstat-lbl">CGPA out of 10</div></div>
+          <div class="cstat"><div class="cstat-num">2</div><div class="cstat-lbl">Patents filed &amp; published</div></div>
+          <div class="cstat"><div class="cstat-num">2027</div><div class="cstat-lbl">Expected graduation</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Sankar V · Salem, Tamil Nadu · <a href="https://github.com/sankar-vadivel">github.com/sankar-vadivel</a></p>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');obs.unobserve(e.target);}});
+},{threshold:0.1});
+document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
+
+const secs=document.querySelectorAll('section[id]');
+const links=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-200)cur=s.id;});
+  links.forEach(a=>{a.style.color=a.getAttribute('href')==='#'+cur?'var(--ink)':'';});
+});
+</script>
+</body>
+</html>
 
